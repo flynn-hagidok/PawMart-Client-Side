@@ -3,21 +3,14 @@ import Navbar from '../../components/Navbar/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../../components/Footer/Footer';
 import Loader from '../../pages/Loader';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 const MainLayout = () => {
 
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 1500)
-
-        return () => clearTimeout(timer)
-    }, []);
+    const { loading } = use(AuthContext);
 
     if (loading) {
-        return <Loader></Loader>
+        return <Loader />
     }
 
     return (

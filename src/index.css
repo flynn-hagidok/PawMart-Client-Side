@@ -1,6 +1,7 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-    themes: light --default;
+  themes: light --default;
 }
 
 @plugin "daisyui/theme" {
@@ -8,19 +9,26 @@
   --color-primary: #000000;
   --color-secondary: #294CFF;
   --color-base-200: #629FF0;
+  --color-base-300: #FF0000;
   --color-accent: #ffffff;
 }
 
-@keyframes pulseLogo{
-  0%{
+li a.active {
+  border-bottom: 2px solid black;
+}
+
+@keyframes pulseLogo {
+  0% {
     transform: scale(0.8);
     opacity: 0.4;
   }
-  50%{
+
+  50% {
     transform: 1.1;
     opacity: 1;
   }
-  100%{
+
+  100% {
     transform: 0.8;
     opacity: 0.4;
   }

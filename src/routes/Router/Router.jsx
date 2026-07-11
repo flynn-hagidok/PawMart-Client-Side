@@ -2,17 +2,30 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
 import Home from "../../pages/Home";
 import Register from "../../pages/Register";
-import Loader from "../../pages/Loader";
+import Error from "../../pages/Error";
 
 
 const Router = createBrowserRouter([
     {
         path: '/',
         Component: MainLayout,
+        errorElement: <Error></Error>,
         children: [
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: '/pet&supplies',
+            },
+            {
+                path: '/addListing',
+            },
+            {
+                path: '/myListing',
+            },
+            {
+                path: '/myOrders',
             }
         ]
     },
@@ -21,8 +34,8 @@ const Router = createBrowserRouter([
         Component: Register
     },
     {
-        path: 'loader',
-        Component: Loader
+        path: '/error',
+        Component: Error
     },
 
 ])

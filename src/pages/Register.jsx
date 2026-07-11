@@ -1,5 +1,6 @@
 import React, { use } from 'react';
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
 
@@ -16,6 +17,9 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 py-10">
+            <Helmet>
+                <title>PawMart | Register</title>
+            </Helmet>
             <div className="w-full max-w-md shadow-2xl rounded-xl p-8">
                 <h2 className="text-3xl font-bold text-center text-primary">
                     Register Now
