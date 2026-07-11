@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../context/AuthContext/AuthContext';
 
 const Home = () => {
+
+    const { user } = use(AuthContext)
+    console.log(user);
+
     return (
         <div>
             <Helmet>
