@@ -13,7 +13,7 @@ const Router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
             },
             {
                 path: '/pet&supplies',
