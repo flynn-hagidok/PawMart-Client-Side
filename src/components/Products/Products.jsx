@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import useAxios from '../../hooks/useAxios';
 import ProductsCard from './ProductsCard';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 const Products = () => {
 
@@ -20,7 +21,7 @@ const Products = () => {
     const handleCategory = (category) => {
 
         setActive(category);
-
+        
         if (category === "All Products") {
             axios.get("/products")
                 .then(data => {
@@ -35,7 +36,7 @@ const Products = () => {
     }
 
     return (
-        <div className='max-w-7/8 mx-auto'>
+        <div className='md:max-w-7/8 mx-auto px-4'>
             <div className={`flex flex-wrap gap-4 md:border-b-2 border-b-secondary mt-10 md:px-4`}>
                 {
                     categories.map((category) => <div className='border-2 lg:border-0 rounded-md border-secondary bg-linear-to-r from-secondary to-base-200 bg-clip-text text-transparent'>
