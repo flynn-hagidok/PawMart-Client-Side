@@ -14,7 +14,10 @@
 }
 
 li a.active {
-  border-bottom: 2px solid black;
+  text-decoration: underline;
+  background: linear-gradient(90deg, #294CFF, #629FF0);
+  background-clip: text;
+  color: transparent;
 }
 
 @keyframes pulseLogo {

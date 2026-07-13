@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import Loading from '../../pages/Loading';
+import useAxios from '../../hooks/useAxios';
 
 const Banner = () => {
 
     const [current, setCurrent] = useState(0)
     const [banners, setBanners] = useState([])
-    console.log(banners);
+    const axiosInstance = useAxios();
 
     useEffect(() => {
-        fetch("http://localhost:5000/banner")
-            .then(res => res.json())
+        axiosInstance.get("/banner")
             .then(data => {
-                setBanners(data);
+                const banner = data.data;
+                setBanners(banner);
             })
-    }, [])
+    }, [useAxios])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrent(prev => (prev + 1) % banners.length);
+        }, 3000)
+        return () => clearInterval(interval);
+    }, [banners.length])
 
     if (!banners || banners.length === 0) {
         return <Loading></Loading>
@@ -36,7 +44,7 @@ const Banner = () => {
                 <img src={banner.image} alt="" className='h-full w-full object-fill' />
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-primary via-black/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-primary via-black/5 to-transparent"></div>
 
             <div className='absolute md:text-2xl font-semibold top-5/6 md:top-4/5 text-accent left-6 lg:left-18'>
                 <p>{banner.description}</p>

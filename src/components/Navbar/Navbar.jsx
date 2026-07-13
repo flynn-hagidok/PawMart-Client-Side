@@ -36,14 +36,14 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold">
                         {links}
                     </ul>
                 </div>
                 <a className="font-semibold text-2xl bg-linear-to-r from-secondary to-base-200 text-transparent bg-clip-text">PawMart</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 font-semibold">
                     {links}
                 </ul>
             </div>
