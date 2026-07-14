@@ -13,7 +13,6 @@ const ProductsCard = ({ product }) => {
                 <p className='text-xl font-semibold'>{product_name}</p>
                 <div className='flex justify-between items-center font-semibold'>
                     <p className='flex items-center'>Price: {price} <FaBangladeshiTakaSign size={14} /></p>
-                    <p>In-Stock: {stock}</p>
                 </div>
             </div>
             <button className='border-2 w-full py-2 bg-linear-to-r from-secondary to-base-200 text-accent rounded-md font-semibold mt-2 cursor-pointer'>View Details</button>

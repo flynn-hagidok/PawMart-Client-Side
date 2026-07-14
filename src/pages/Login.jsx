@@ -1,19 +1,10 @@
 import React, { use } from 'react';
-import { AuthContext } from '../context/AuthContext/AuthContext';
 import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../context/AuthContext/AuthContext';
 
-const Register = () => {
+const Login = () => {
 
-    const { signInWithGoogle } = use(AuthContext)
-
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
-            .then(result => {
-                console.log(result);
-            }).catch(err => {
-                console.log(err.message);
-            })
-    }
+    const { handleGoogleLogin } = use(AuthContext);
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 py-10">
@@ -22,34 +13,18 @@ const Register = () => {
             </Helmet>
             <div className="w-full max-w-md shadow-2xl rounded-xl p-8">
                 <h2 className="text-3xl font-bold text-center text-primary">
-                    Register Now
+                    Login Now
                 </h2>
                 <p className="text-center text-gray-500 mt-2 mb-6">
-                    Create your PawMart account
+                    Login your PawMart account
                 </p>
                 <form className="space-y-2">
-                    <div>
-                        <label className="block mb-2 font-medium">
-                            Full Name
-                        </label>
-                        <input
-                            type="text" name="name" placeholder="Enter your name" className="input input-bordered w-full" required
-                        />
-                    </div>
                     <div>
                         <label className="block mb-2 font-medium">
                             Email
                         </label>
                         <input
                             type="email" name="email" placeholder="Enter your email" className="input input-bordered w-full" required
-                        />
-                    </div>
-                    <div>
-                        <label className="block mb-2 font-medium">
-                            Photo URL
-                        </label>
-                        <input
-                            type="text" name="photo" placeholder="Enter photo URL" className="input input-bordered w-full"
                         />
                     </div>
                     <div>
@@ -64,7 +39,7 @@ const Register = () => {
                         type="submit"
                         className="btn bg-linear-to-r from-secondary to-base-200 w-full mt-2"
                     >
-                        Register
+                        Login
                     </button>
                     <p className='text-center font-semibold'>Or</p>
                     <button type="button" onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5] w-full">
@@ -72,9 +47,9 @@ const Register = () => {
                         Login with Google
                     </button>
                     <p className="text-center text-sm">
-                        Already have an account?{" "}
+                        Don't have an account?{" "}
                         <span className="text-primary font-semibold cursor-pointer hover:underline">
-                            Login
+                            Register
                         </span>
                     </p>
                 </form>
@@ -83,4 +58,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;

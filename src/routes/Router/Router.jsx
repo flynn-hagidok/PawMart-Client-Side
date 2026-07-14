@@ -6,6 +6,10 @@ import Error from "../../pages/Error";
 import Details from "../../pages/Details";
 import Loading from "../../pages/Loading";
 import PetAndSupplies from "../../pages/PetAndSupplies";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Login from "../../pages/Login";
+import MyOrders from "../../pages/MyOrders";
+import AddListing from "../../pages/AddListing";
 
 
 const Router = createBrowserRouter([
@@ -26,16 +30,18 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/addListing',
+                element: <PrivateRoute><AddListing></AddListing></PrivateRoute>
             },
             {
                 path: '/myListing',
             },
             {
                 path: '/myOrders',
+                element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
             },
             {
                 path: "/details/:id",
-                element: <Details></Details>,
+                element: <PrivateRoute><Details></Details></PrivateRoute>,
                 loader: async ({ params }) => fetch(`http://localhost:5000/products/details/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
             }
@@ -44,6 +50,10 @@ const Router = createBrowserRouter([
     {
         path: '/register',
         Component: Register
+    },
+    {
+        path: '/login',
+        Component: Login
     },
     {
         path: '/error',
