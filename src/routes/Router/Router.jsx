@@ -5,6 +5,7 @@ import Register from "../../pages/Register";
 import Error from "../../pages/Error";
 import Details from "../../pages/Details";
 import Loading from "../../pages/Loading";
+import PetAndSupplies from "../../pages/PetAndSupplies";
 
 
 const Router = createBrowserRouter([
@@ -18,7 +19,10 @@ const Router = createBrowserRouter([
                 Component: Home,
             },
             {
-                path: '/pet&supplies',
+                path: '/pet-supplies',
+                Component: PetAndSupplies,
+                loader: () => fetch("http://localhost:5000/products"),
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: '/addListing',

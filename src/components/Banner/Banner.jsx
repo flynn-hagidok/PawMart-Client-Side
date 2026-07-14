@@ -39,7 +39,7 @@ const Banner = () => {
     const banner = banners[current]
 
     return (
-        <div className='h-64 lg:h-[560px] relative'>
+        <div className='h-64 lg:h-[660px] relative'>
             <div className='h-full'>
                 <img src={banner.image} alt="" className='h-full w-full object-fill' />
             </div>
