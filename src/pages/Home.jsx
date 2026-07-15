@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext/AuthContext';
 import Banner from '../components/Banner/Banner';
 import { useLoaderData } from 'react-router';
 import Products from '../components/Products/Products';
+import News from '../components/News/News';
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <Products></Products>
+            <News></News>
         </div>
     );
 };
