@@ -10,7 +10,6 @@ const Updates = () => {
     const product = useLoaderData();
     const [category, setCategory] = useState(product.category);
     const axiosInstance = useAxiosSecure();
-    console.log(product);
 
     const handleUpdate = (e) => {
         e.preventDefault();

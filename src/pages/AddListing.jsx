@@ -22,7 +22,7 @@ const AddListing = () => {
         const email = form.email.value;
 
         const newProduct = { product_name, category, price, location, description, image, date, email }
-        console.log(newProduct);
+
         axiosInstance.post("/addListing", newProduct)
             .then(res => {
                 const product = res.data;
