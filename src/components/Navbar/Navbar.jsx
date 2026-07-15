@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { NavLink } from 'react-router';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { CiMenuBurger } from 'react-icons/ci';
+import { CgProfile } from 'react-icons/cg';
 const Navbar = () => {
 
     const { user, logOut } = use(AuthContext)
@@ -51,11 +52,14 @@ const Navbar = () => {
                 {
                     user ? <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="cursor-pointer">
-                            <img
-                                src={user.photoURL}
-                                alt={user.displayName}
-                                className="w-12 h-12 rounded-full border-2 border-secondary"
-                            />
+                            {user?.photoURL ?
+
+                                <img
+                                    src={user.photoURL}
+                                    alt={user.displayName}
+                                    className="w-12 h-12 rounded-full border-2 border-secondary"
+                                />
+                                : <CgProfile size={40} />}
                         </div>
 
                         <ul

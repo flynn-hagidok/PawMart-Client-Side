@@ -1,10 +1,57 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import { Link, replace, useLocation, useNavigate } from 'react-router';
+import Loading from './Loading';
 
 const Login = () => {
 
-    const { handleGoogleLogin } = use(AuthContext);
+    const { signInWithGoogle, userLogin } = use(AuthContext);
+    const [err, setErr] = useState("");
+    const [loading, setLoading] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/";
+
+    const handleGoogleLogin = () => {
+
+        setLoading(true);
+
+        signInWithGoogle()
+            .then(() => {
+                navigate(from, { replace: true })
+
+            }).catch(err => {
+                setErr(err.message);
+                setLoading(false)
+            }).finally(() => {
+                setLoading(false);
+            })
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        setErr("");
+
+        userLogin(email, password)
+            .then(result => {
+                form.reset();
+                navigate(from, { replace: true })
+            }).catch(err => {
+                const error = err.message;
+                setErr(error);
+            }).finally(() => {
+                setLoading(false)
+            })
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 py-10">
@@ -18,7 +65,12 @@ const Login = () => {
                 <p className="text-center text-gray-500 mt-2 mb-6">
                     Login your PawMart account
                 </p>
-                <form className="space-y-2">
+                <form onSubmit={handleLogin} className="space-y-2">
+                    <div>
+                        {
+                            err ? <p className='p-2 px-4 text-red-500 bg-red-200 rounded-md'>Invalid credential ! give correct information</p> : ""
+                        }
+                    </div>
                     <div>
                         <label className="block mb-2 font-medium">
                             Email
@@ -39,7 +91,9 @@ const Login = () => {
                         type="submit"
                         className="btn bg-linear-to-r from-secondary to-base-200 w-full mt-2"
                     >
-                        Login
+                        {
+                            loading ? <Loading></Loading> : "Login"
+                        }
                     </button>
                     <p className='text-center font-semibold'>Or</p>
                     <button type="button" onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5] w-full">
@@ -48,9 +102,9 @@ const Login = () => {
                     </button>
                     <p className="text-center text-sm">
                         Don't have an account?{" "}
-                        <span className="text-primary font-semibold cursor-pointer hover:underline">
+                        <Link to="/register" className="text-primary font-semibold cursor-pointer hover:underline">
                             Register
-                        </span>
+                        </Link>
                     </p>
                 </form>
             </div>

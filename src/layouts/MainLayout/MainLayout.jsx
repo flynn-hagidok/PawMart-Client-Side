@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../../components/Footer/Footer';

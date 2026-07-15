@@ -51,13 +51,18 @@ const Details = () => {
     return (
         <div className='p-4 md:p-0'>
             <div className='md:flex gap-6 md:mt-10 md:max-w-6/8 mx-auto p-6 shadow-2xl rounded-md'>
-                <div className='h-50 md:h-100 md:w-7xl rounded-md p-2 shadow-2xl'>
+                <div className='h-50 md:h-100 md:w-2xl rounded-md p-2 shadow-2xl'>
                     <img src={products.image} alt="" className='h-full w-full object-fill rounded-md' />
                 </div>
                 <div className='space-y-4 md:space-y-6 flex justify-center flex-col mt-6 md:mt-0'>
                     <p className='text-2xl font-semibold'>{products.product_name}</p>
-                    <div className='flex gap-20 font-semibold'>
+                    <div className='md:flex gap-20 font-semibold'>
                         <p>Price: {products.price}</p>
+                        <p>Category: {products.category}</p>
+                    </div>
+                    <div className='md:flex gap-20 font-semibold'>
+                        <p>Owner: {products.email}</p>
+                        <p>Location: {products.location}</p>
                     </div>
                     <div>
                         <p className='font-semibold'>Description : </p>
@@ -99,9 +104,9 @@ const Details = () => {
                         <input type="number" name="phone" className='input input-bordered w-full' required />
 
                         <div className='flex justify-between mt-2'>
-                            <button className='border-2 px-6 py-2 font-semibold bg-linear-to-r from-secondary to-base-200 text-accent rounded-md cursor-pointer'>Order</button>
-
                             <button type='button' onClick={() => modalRef.current.close()} className='border-2 px-6 py-2 font-semibold bg-linear-to-r from-secondary to-base-200 text-accent rounded-md cursor-pointer'>Cancel</button>
+
+                            <button className='border-2 px-6 py-2 font-semibold bg-linear-to-r from-secondary to-base-200 text-accent rounded-md cursor-pointer'>Order</button>
                         </div>
                     </form>
                 </div>

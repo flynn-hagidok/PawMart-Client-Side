@@ -15,7 +15,7 @@ const Banner = () => {
                 const banner = data.data;
                 setBanners(banner);
             })
-    }, [useAxios])
+    }, [axiosInstance])
 
     useEffect(() => {
         const interval = setInterval(() => {
