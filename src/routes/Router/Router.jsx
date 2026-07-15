@@ -27,7 +27,7 @@ const Router = createBrowserRouter([
             {
                 path: '/pet-supplies',
                 Component: PetAndSupplies,
-                loader: () => fetch("http://https://pawmart-server-sand.vercel.app0/products"),
+                loader: () => fetch("https://pawmart-server-sand.vercel.app/products"),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
@@ -45,13 +45,13 @@ const Router = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <PrivateRoute><Details></Details></PrivateRoute>,
-                loader: async ({ params }) => fetch(`http://https://pawmart-server-sand.vercel.app0/products/details/${params.id}`),
+                loader: async ({ params }) => fetch(`http://pawmart-server-sand.vercel.app/products/details/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: "/update/:id",
                 element: <PrivateRoute><Updates></Updates></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://https://pawmart-server-sand.vercel.app0/products/details/${params.id}`)
+                loader: ({ params }) => fetch(`http://pawmart-server-sand.vercel.app/products/details/${params.id}`)
             }
         ]
     },

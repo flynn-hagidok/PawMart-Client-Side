@@ -16,7 +16,7 @@ const MyOrders = () => {
                 const orders = res.data;
                 setOrders(orders)
             })
-    }, [axiosInstance])
+    }, [axiosInstance, user])
 
     const handleDownload = () => {
         const doc = new jsPDF();
@@ -61,7 +61,7 @@ const MyOrders = () => {
                     <tbody>
                         {
                             orders.map(order =>
-                                <tr>
+                                <tr key={order._id}>
                                     <td>
                                         {order.product_name}
                                     </td>

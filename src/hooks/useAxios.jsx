@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const instance = axios.create({
-    baseURL: "http://https://pawmart-server-sand.vercel.app0/"
+    baseURL: "https://pawmart-server-sand.vercel.app"
 })
 
 const useAxios = () => {
