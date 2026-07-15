@@ -43,7 +43,7 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='border text-end'>
+        <div className='text-end'>
             <div className="overflow-x-auto">
                 <table className="table min-w-max whitespace-nowrap mt-10">
                     <thead>
