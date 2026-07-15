@@ -11,6 +11,7 @@ import Login from "../../pages/Login";
 import MyOrders from "../../pages/MyOrders";
 import AddListing from "../../pages/AddListing";
 import MyListing from "../../pages/MyListing";
+import Updates from "../../pages/Updates";
 
 
 const Router = createBrowserRouter([
@@ -46,6 +47,11 @@ const Router = createBrowserRouter([
                 element: <PrivateRoute><Details></Details></PrivateRoute>,
                 loader: async ({ params }) => fetch(`http://localhost:5000/products/details/${params.id}`),
                 hydrateFallbackElement: <Loading></Loading>
+            },
+            {
+                path: "/update/:id",
+                element: <PrivateRoute><Updates></Updates></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/details/${params.id}`)
             }
         ]
     },

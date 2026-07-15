@@ -1,12 +1,15 @@
 import React, { use, useEffect, useState } from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const MyListing = () => {
 
     const { user } = use(AuthContext);
     const axiosInstance = useAxiosSecure();
-    const [myList, setMyList] = useState([])
+    const [myList, setMyList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance.get(`/addListing?email=${user.email}`)
@@ -17,6 +20,40 @@ const MyListing = () => {
                 console.log(err);
             })
     }, [axiosInstance, user])
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosInstance.delete(`/products/${id}`)
+                    .then(res => {
+                        const remove = res.data.deletedCount;
+                        if (remove === 1) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your product has been deleted.",
+                                icon: "success"
+                            });
+                            setMyList(myList.filter(product => product._id !== id))
+                        }
+                    })
+            }
+        });
+    }
+
+    const handleUpdate = (id) => {
+        axiosInstance.patch(`/products/${id}`)
+            .then(res => {
+                navigate(`/update/${id}`)
+            })
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -52,8 +89,8 @@ const MyListing = () => {
                                     {list.date}
                                 </td>
                                 <td className='flex flex-col gap-2'>
-                                    <button className='bg-linear-to-r from-secondary to-base-200 text-accent font-medium py-2 rounded-md cursor-pointer'>Edit</button>
-                                    <button className='bg-linear-to-r from-secondary to-base-200 text-accent font-medium py-2 rounded-md cursor-pointer'>Delete</button>
+                                    <button onClick={() => handleUpdate(list._id)} className='bg-linear-to-r from-secondary to-base-200 text-accent font-medium py-2 rounded-md cursor-pointer'>Edit</button>
+                                    <button onClick={() => handleDelete(list._id)} className='bg-linear-to-r from-secondary to-base-200 text-accent font-medium py-2 rounded-md cursor-pointer'>Delete</button>
                                 </td>
                             </tr>
                         )
